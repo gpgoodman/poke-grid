@@ -1,12 +1,20 @@
-import { getPokemon, getSpecies, getOfficialArtwork, getEnglishFlavor, getGenderInfo, humanize } from '@/lib/poke';
+import { getPokemon, getSpecies, getOfficialArtwork, getEnglishFlavor, getGenderInfo, humanize } from '@lib/poke';
+import {Metadata} from "next";
 
-export async function generateMetadata({ params }) {
-    return { title: `Pokémon: ${params.id}` };
+type PageProps = { params: Promise<{ id: string }> };
+
+export async function generateMetadata(
+    { params }: PageProps
+): Promise<Metadata> {
+    const { id } = await params;
+    return { title: `Pokémon: ${id}` };
 }
 
-export default async function PokemonDetailPage({ params }) {
-    const id = params.id;
-    const [pokemon, species] = await Promise.all([getPokemon(id), getSpecies(id)]);
+
+export default async function PokemonDetailPage({ params }: PageProps) {
+    const {id} = await params;
+    const numId= Number(id)
+    const [pokemon, species] = await Promise.all([getPokemon(numId), getSpecies(numId)]);
 
     const img = getOfficialArtwork(pokemon);
     const name = humanize(pokemon.name);
