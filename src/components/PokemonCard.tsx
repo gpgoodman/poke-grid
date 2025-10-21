@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { humanize } from '@lib/poke'
 
-export default function PokemonCard({ id, name, img }) {
+type Props = { id: number; name: string; img: string };
+
+export default function PokemonCard({ id, name, img }:Props) {
     return (
         <Link
             href={`/pokemon/${id}`}
