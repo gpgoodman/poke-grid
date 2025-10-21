@@ -66,8 +66,8 @@ export async function getSpecies(id: number): Promise<Species> {
     return res.json();
 }
 
-export function humanize(s) {
+export function humanize(s: string | null | undefined): string {
     return (s || '')
         .replace(/-/g, ' ')
-        .replace(/\b\w/g, c => c.toUpperCase());
+        .replace(/\b\w/g, (c: string) => c.toUpperCase());
 }

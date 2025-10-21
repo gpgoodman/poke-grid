@@ -7,12 +7,11 @@
     ],
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "jsx": "preserve",
-    "allowJs": true, // so .js/.jsx keep working
+    "jsx": "preserve", // Next.js default; fine with React 19
     "noEmit": true,
     "isolatedModules": true,
-    "baseUrl": "./src", // <— IMPORTANT
-    "paths": { // <— IMPORTANT
+    "baseUrl": "./src",
+    "paths": {
       "@/*": [
         "*"
       ],
@@ -24,7 +23,9 @@
       ]
     },
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true, // <-- turn on strict mode
+    "exactOptionalPropertyTypes": true, // nice extra
+    "noUncheckedIndexedAccess": true, // nice extra; catches undefined from obj[key]
     "incremental": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -32,7 +33,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "allowJs": true
   },
   "include": [
     "next-env.d.ts",
