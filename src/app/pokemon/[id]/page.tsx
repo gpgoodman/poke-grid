@@ -26,7 +26,6 @@ export default async function PokemonDetailPage({ params }: PageProps) {
     return (
         <article className="space-y-4">
             <a href="/" className="text-sm text-blue-600 hover:underline">← Back</a>
-
             <header className="flex flex-col sm:flex-row items-center gap-4">
                 <div className="relative w-40 h-40">
                     <Image
