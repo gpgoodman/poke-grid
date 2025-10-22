@@ -1,5 +1,6 @@
 import { getPokemon, getSpecies, getOfficialArtwork, getEnglishFlavor, getGenderInfo, humanize } from '@lib/poke';
 import {Metadata} from "next";
+import Image from "next/image";
 
 type PageProps = { params: Promise<{ id: string }> };
 
@@ -27,14 +28,20 @@ export default async function PokemonDetailPage({ params }: PageProps) {
             <a href="/" className="text-sm text-blue-600 hover:underline">← Back</a>
 
             <header className="flex flex-col sm:flex-row items-center gap-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={img} alt={name} className="w-40 h-40 object-contain" />
+                <div className="relative w-40 h-40">
+                    <Image
+                        src={img}
+                        alt={name}
+                        fill
+                        sizes="160px"
+                        className="object-contain"
+                    />
+                </div>
                 <div>
                     <h1 className="text-3xl font-semibold">{name}</h1>
                     <p className="text-gray-600 mt-1">{gender.label}</p>
                 </div>
             </header>
-
             <section className="space-y-2">
                 <h2 className="text-xl font-semibold">Description</h2>
                 <p className="leading-relaxed">{desc || 'No English description available.'}</p>
